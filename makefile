@@ -22,6 +22,9 @@ psplit: split_visual
 	gcc $(CFLAGS) -o $(EXEC) *.c *.h split_visual/*.c
 	./$(EXEC)
 
+pjoin: join_visual
+	gcc $(CFLAGS) -o $(EXEC) *.c *.h join_visual/*.c
+	./$(EXEC)
 # Con esta receta vemos lo que nos devuelve
 # el split y el join. NO HACE PRUEBAS
 svisual: strutil_visual
