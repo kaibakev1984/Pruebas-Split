@@ -7,20 +7,20 @@
 #define ANSI_COLOR_LGH_GREEN   "\x1b[1m\x1b[32m"
 #define ANSI_COLOR_LGH_WHITE 	""
 #define ANSI_COLOR_RESET   "\x1b[0m"
-A
 
 void print_split(char *str, char **strv){
 	size_t i = 0;
-	printf("%s ---> ", str);
+	printf("Cadena: \"%s\" ---> [", str);
 	while(strv[i]){
 		printf("\"%s\"", strv[i]);
 		i++;
 		if(strv[i]) printf(",");
 	}
-	printf("]\n");
+	printf("]\n\n");
 }
 
 int main(){
+	printf("Inicio de SPLIT\n");
 
 	char *str1 = "abc,,def";
 	char *str2 = "abc,def,";
@@ -43,6 +43,7 @@ int main(){
 	print_split(str3, strv3);
 	print_split(str4, strv4);
 	print_split(str5, strv5);
+	printf("OJO. La cadena acá es %s, pero el separador es un VACIO\n", str6);
 	print_split(str6, strv6);
 	print_split(str7, strv7);
 
