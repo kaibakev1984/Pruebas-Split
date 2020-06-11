@@ -68,7 +68,7 @@ char **split(const char *str, char sep){
 }
 
 
-/* Funciones para Join */
+/*
 size_t concatenar(char *buffer, char *str, size_t j){
 	for(size_t i = 0; i < strlen(str); i++){
 		buffer[j++] = str[i];
@@ -101,6 +101,8 @@ char *join(char **strv, char sep){
 	}
 	return str;
 }
+*/
+
 void free_strv(char *strv[]){
 	for(size_t i = 0; strv[i] != NULL; i++){
 		free(strv[i]);
