@@ -15,9 +15,21 @@ char *join_crear(char *str, char separador, char nuevo_separador){
 	return nuevo_str;
 }
 
-void mostrar_str_con_nuevo_separador(char *str, char sep, char nuevo_sep){
-	char *str_nuevo = join_crear(str, sep, nuevo_sep);
-	printf("\"%s\" ---> \"%s\"\n\n", str, str_nuevo);
+void mostrar_str_con_nuevo_separador(char *str, char separador, char nuevo_separador){
+	char *str_nuevo = join_crear(str, separador, nuevo_separador);
+	printf("Cadena ");
+	if(isatty(1) == 1) printf(ANSI_COLOR_LGH_RED);	
+	printf("\"%s\" ", str);
+	if(isatty(1) == 1) printf(ANSI_COLOR_RESET);
+	printf("con separador");
+	if(isatty(1) == 1) printf(ANSI_COLOR_LGH_RED);
+	printf("\'%c\' ", nuevo_separador);
+	if(isatty(1) == 1) printf(ANSI_COLOR_RESET);
+	printf("----> ");
+	if(isatty(1) == 1) printf(ANSI_COLOR_LGH_RED);
+	printf("\"%s\"\n\n", str_nuevo);
+	if(isatty(1) == 1) printf(ANSI_COLOR_RESET);
+
 	free(str_nuevo);
 }
 
