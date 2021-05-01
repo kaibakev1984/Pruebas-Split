@@ -51,7 +51,7 @@ substr(ejemplo, 2)              → "Ej"
 substr(ejemplo + 4, 2)          → "pl"
 ```
 
-Complejidad algorítmica: se espera que la función tenga complejidad $$\mathcal{O}(k)$$.
+Complejidad algorítmica: se espera que la función tenga complejidad **O(k)**.
 
 
 ### Pruebas definidas para split()
@@ -66,7 +66,7 @@ split("", ',')  →  [""]
 split(",", ',') →  ["", ""]
 ```
 
-Complejidad algorítmica: se espera que la función tenga complejidad $$\mathcal{O}(n)$$, siendo $$n$$ la longitud de la cadena inicial.
+Complejidad algorítmica: se espera que la función tenga complejidad **O(n)**, siendo **n** la longitud de la cadena inicial.
 
 
 ### Pruebas definidas para join()
@@ -80,44 +80,8 @@ join([], ',')               →  "" // Join de arreglo vacío, {NULL} en C.
 join(["abc", "def"], '\0')  →  "abcdef"
 ```
 
-Complejidad algorítmica: se espera que la función tenga complejidad $$\mathcal{O}(n)$$, siendo $$n$$ la longitud de la cadena resultante.
-
-Las pruebas del corrector automático proveen una indicación del comportamiento de `join()` (si bien **todas las funciones deben correr en tiempo lineal**, `join()` provee una dificultad de implementación mayor a `split()` o `substr()`).
-
-Este sería un test con comportamiento lineal:
-
-    [ RUN      ] test_join.test_complejidad_10000
-    [       OK ] test_join.test_complejidad_10000 (7 ms)
-    [ RUN      ] test_join.test_complejidad_20000
-    [       OK ] test_join.test_complejidad_20000 (14 ms)
-    [ RUN      ] test_join.test_complejidad_30000
-    [       OK ] test_join.test_complejidad_30000 (17 ms)
-    [ RUN      ] test_join.test_complejidad_40000
-    [       OK ] test_join.test_complejidad_40000 (27 ms)
-    [ RUN      ] test_join.test_complejidad_50000
-    [       OK ] test_join.test_complejidad_50000 (33 ms)
-    [ RUN      ] test_join.test_complejidad_60000
-    [       OK ] test_join.test_complejidad_60000 (40 ms)
-
-Y este con comportamiento cuadrático:
-
-    [ RUN      ] test_join.test_complejidad_10000
-    [       OK ] test_join.test_complejidad_10000 (48 ms)
-    [ RUN      ] test_join.test_complejidad_20000
-    [       OK ] test_join.test_complejidad_20000 (618 ms)
-    [ RUN      ] test_join.test_complejidad_30000
-    [       OK ] test_join.test_complejidad_30000 (1354 ms)
-    [ RUN      ] test_join.test_complejidad_40000
-    [       OK ] test_join.test_complejidad_40000 (2425 ms)
-    [ RUN      ] test_join.test_complejidad_50000
-    [       OK ] test_join.test_complejidad_50000 (4019 ms)
-    [ RUN      ] test_join.test_complejidad_60000
-    [       OK ] test_join.test_complejidad_60000 (5722 ms)
-
+Complejidad algorítmica: se espera que la función tenga complejidad **O(n)**, siendo **n** la longitud de la cadena resultante.
 
 ### free_strv()
 
-`free_strv()` libera la memoria asociada con un arreglo dinámico de cadenas dinámicas:
-
-Si bien no es obligatorio probar la biblioteca, es muy recomendable hacer pruebas unitarias para comprobar el correcto
-funcionamiento, en particular para los casos borde.
+`free_strv()` libera la memoria asociada con un arreglo dinámico de cadenas dinámicas
