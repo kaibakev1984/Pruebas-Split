@@ -35,7 +35,11 @@ strutil: strutil_visual
 clear: $(EXEC)
 	rm -f $(EXEC)
 
+run: *.c
+	$(CC) $(CFLAGS) -o $(EXEC) *.c *.h
 
+all: run
+	./$(EXEC)
 
 
 
