@@ -1,57 +1,29 @@
 CC = gcc
 CFLAGS = -g -std=c99 -Wall -Wconversion -Wno-sign-conversion -Werror
 VFLAGS = --leak-check=full --show-reachable=yes --track-origins=yes
-EXEC = pruebas
+GFLAGS = -tui
+EXEC = pruebas 
+OBJFILES = main.o strutil.o testing.o
 
-sub: print_test_substr
-	gcc $(CFLAGS) -o $(EXEC) *.c *.h print_test_substr/*.c
+%.o: %.c %.h
+	$(CC) $(CFLAGS) -c $<
+
+$(EXEC): $(OBJFILES)
+	$(CC) $(CFLAGS) $(OBJFILES) -o $(EXEC)
+
+all: $(EXEC)
+
+run: all 
 	./$(EXEC)
 
-valsub: print_test_substr
-	gcc $(CFLAGS) -o $(EXEC) *.c *.h print_test_substr/*.c
-	valgrind $(VFLAGS) ./$(EXEC)
+valgrind: all
+	valgrind $(VFLAGS) ./pruebas
 
+zip: lista.c pruebas_alumno.c
+	zip lista.zip lista.h lista.c pruebas_alumno.c
 
-split: print_test_split
-	gcc $(CFLAGS) -o $(EXEC) *.c *.h print_test_split/*.c 
-	./$(EXEC)
-vsplit: print_test_split
-	gcc $(CFLAGS) -o $(EXEC) *.c *.h print_test_split/*.c
-	valgrind $(VFLAGS) ./$(EXEC)
+clear: $(OBJFILES)
+	rm -f pruebas *.o
 
-psplit: split_visual
-	gcc $(CFLAGS) -o $(EXEC) *.c *.h visual_split/*.c
-	./$(EXEC)
-
-pjoin: join_visual
-	gcc $(CFLAGS) -o $(EXEC) *.c *.h visual_join/*.c
-	./$(EXEC)
-
-
-strutil: strutil_visual
-	gcc $(CFLAGS) -o $(EXEC) visual_strutil/*.c *.c *.h
-	./$(EXEC)
-
-clear: $(EXEC)
-	rm -f $(EXEC)
-
-run: *.c
-	$(CC) $(CFLAGS) -o $(EXEC) *.c *.h
-
-all: run
-	./$(EXEC)
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
+gdb: all 
+	gdb -tui ./pruebas

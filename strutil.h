@@ -3,6 +3,7 @@
 
 #include <stddef.h>
 
+char *substr(const char *str, size_t n);
 /*
  * Devuelve en un arreglo dinámico terminado en NULL con todos los subsegmentos
  * de ‘str’ separados por el carácter ‘sep’. Tanto el arreglo devuelto como las
@@ -12,6 +13,7 @@
  * arreglo devuelto. La función devuelve NULL si falló alguna llamada a
  * malloc(), o si ‘sep’ es '\0'.
  */
+
 char** split(const char* str, char sep);
 
 /*

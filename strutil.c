@@ -1,95 +1,74 @@
-#define _DEFAULT_SOURCE
-#define _DEFINE_SOURCE
-#include <stdio.h>
-#include "strutil.h"
 #include <stdlib.h>
 #include <string.h>
+#include "strutil.h"
+#include <stdio.h>
 
-/* Funciones para el Split */
-char *buffer_cargar(char *buffer, size_t largo){
-	char *str = calloc(largo, sizeof(char));
-	if(!str) return NULL;
-	if(largo > 0){
-		memcpy(str, buffer, largo);
-	}
-	return str;
+
+/* ******************************************************************
+ * *                        FUNCIONES AUXILIARES
+ * * *****************************************************************/
+char **create_strv(const char * str, char sep) {
+  size_t count_sep = 0;
+  for(size_t i = 0; i < strlen(str); i++) {
+    if(str[i] == sep) count_sep++;
+  }
+  return malloc((count_sep + 2) * sizeof(char *)); 
 }
 
-char *buffer_crear(char *buff, size_t largo){
-	if(buff) free(buff);
-	char *buffer = calloc(largo, sizeof(char));
-	if(!buffer) return NULL;
-	return buffer;
+char *create_str(char **strv) {
+  size_t size_str = 0;
+  for(size_t i = 0; strv[i]; i++) {
+    size_str += strlen(strv[i]);
+    size_str++;
+  }
+  return calloc((size_str + 1), sizeof(char));
 }
 
-char **strv_crear(const char *str, char sep, size_t largo_str){
-	size_t largo_strv = 2;
-	for(size_t i = 0; i <= largo_str; i++){
-		if(str[i] == sep) largo_strv++;
-	}
-	char **strv = malloc(largo_strv*sizeof(char *));
-	if(!strv) return NULL;
-	return strv;
+/* ******************************************************************
+ * *                        PROGRAMA PRINCIPAL
+ * * *****************************************************************/
+char *substr(const char *str, size_t n) {
+  char *str_result = calloc(n + 1, sizeof(char));
+  for(size_t i = 0; i < n; i++){
+    str_result[i] = str[i];
+  }
+  return str_result;
 }
 
-char **split(const char *str, char sep){ 
-	size_t largo_str = strlen(str);
-	char **strv = strv_crear(str, sep, largo_str);
-	if(!strv) return NULL;
-
-	char *buffer = buffer_crear(NULL, largo_str + 1);
-	size_t k = 0, j = 0;
-	for(size_t i = 0; i <= largo_str; i++){
-		if(str[i] == sep || str[i] == '\0'){
-			strv[k] = buffer_cargar(buffer, j + 1);
-			buffer = buffer_crear(buffer, largo_str + 1);
-			j = 0;
-			k++;
-		}else{
-			buffer[j++] = str[i];
-		}
-	}
-	free(buffer);
-	strv[k] = NULL;
-	return strv;
+char** split(const char* str, char sep){
+  char **strv = create_strv(str, sep);
+  size_t j = 0;
+  size_t k = 0;
+  for(size_t i = 0; i <= strlen(str); i++) {
+      if(str[i] == sep || str[i] == '\0') {
+        strv[k++] = substr(str + j, i - j);
+        j = i + 1;
+      }
+  }
+  strv[k] = NULL;
+  return strv;
 }
 
-/* Funciones para Join */
-size_t concatenar(char *buffer, char *str, size_t j){
-	for(size_t i = 0; i < strlen(str); i++){
-		buffer[j++] = str[i];
-	}
-	return j;
+char* join(char** strv, char sep) {
+  char *str = create_str(strv);
+  size_t j = 0;
+  size_t i = 0;
+  while(strv[i]){
+    size_t size_str = strlen(strv[i]);
+    strncpy(str + j, strv[i], size_str);
+    j += size_str;
+    i++;
+    if(sep != '\0' && strv[i]) {
+      str[j++] = sep;
+    }
+  }
+  return str;
 }
 
-char *str_crear(char **strv){
-	size_t largo_str = 1;
-	if(strv){
-		for(size_t i = 0; strv[i]; i++){
-			largo_str += sizeof(strv[i]) / sizeof(char) + 1;
-		}
-	}
-	char *str = calloc(largo_str + 1, sizeof(char));
-	return str;
+void free_strv(char* strv[]) {
+  for(size_t i = 0; strv[i]; i++) {
+    free(strv[i]);
+  }
+  free(strv);
 }
 
-char *join(char **strv, char sep){
-	char *str = str_crear(strv);
-	size_t i = 0, j = 0;
-	if(strv){
-		while(strv[i] != NULL){
-			j = concatenar(str, strv[i], j);
-			i++;
-			if(strv[i]){
-				str[j++] = sep;
-			}
-		}
-	}
-	return str;
-}
-void free_strv(char *strv[]){
-	for(size_t i = 0; strv[i] != NULL; i++){
-		free(strv[i]);
-	}
-	free(strv);
-}

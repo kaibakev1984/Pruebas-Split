@@ -1,4 +1,3 @@
-#include "strutil.h"
 #include "testing.h"
 #include <stdio.h>
 #include "pruebas_strutil.c"
