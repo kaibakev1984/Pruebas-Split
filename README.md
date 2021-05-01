@@ -1,5 +1,4 @@
 ## Manejo de cadenas
-{: #strutil}
 
 Se pide implementar las funciones de manejo que cadenas que se describen a continuación. Adjunto en el [sitio de descargas]({{site.skel}}) se puede encontrar un archivo _strutil.h_ con todos sus prototipos.
 
