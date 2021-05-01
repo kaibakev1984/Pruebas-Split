@@ -19,9 +19,6 @@ run: all
 valgrind: all
 	valgrind $(VFLAGS) ./pruebas
 
-zip: lista.c pruebas_alumno.c
-	zip lista.zip lista.h lista.c pruebas_alumno.c
-
 clear: $(OBJFILES)
 	rm -f pruebas *.o
 
