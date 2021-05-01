@@ -1,6 +1,7 @@
 ## Manejo de cadenas
 
 Este proyecto pretende ser una guía para implementar los métodos definidos en el `strutil.h`. Si bien, se adjuntó la solución del mismo, la idea es que cada uno pueda implementar su propia versión.
+
 **NOTA**: No se tiene en cuenta las pruebas de tiempo.
 
 Para correr el proyecto:
@@ -71,7 +72,6 @@ Complejidad algorítmica: se espera que la función tenga complejidad **O(n)**, 
 
 ### Pruebas definidas para join()
 
-Casos borde:
 ``` cpp
 join([""], ',')             →  ""
 join(["abc"], ',')          →  "abc"
