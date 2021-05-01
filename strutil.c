@@ -37,9 +37,10 @@ char *substr(const char *str, size_t n) {
 
 char** split(const char* str, char sep){
   char **strv = create_strv(str, sep);
+  size_t size_str = strlen(str);
   size_t j = 0;
   size_t k = 0;
-  for(size_t i = 0; i <= strlen(str); i++) {
+  for(size_t i = 0; i <= size_str; i++) {
       if(str[i] == sep || str[i] == '\0') {
         strv[k++] = substr(str + j, i - j);
         j = i + 1;
