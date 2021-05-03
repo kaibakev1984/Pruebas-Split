@@ -83,45 +83,6 @@ char *join_crear(char *str, char sep, char sep_new){
 	return str_new;
 }
 
-/*	
-
-void pruebas_join(){
-	char *str1 = join_crear("", ',', '.');
-	char *str2 = join_crear(",", ',', '.');
-	char *str3 = join_crear("abc", '\0', ',');
-	char *str4 = join_crear("", '\0', ',');
-	char *str5 = join_crear(",,,,,,", '\0', ',');
-
-	char **str_null = {NULL};
-	char *str6 = join(str_null, ',');
-
-	free(str1);
-	free(str2);
-	free(str3);
-	free(str4);
-	free(str5);
-	free(str6);
-}
-
-char *str_crear_10000(char sep, size_t n){
-	char *str = calloc(n + 1, sizeof(char));
-	if(!str) return NULL;
-	for(size_t i = 0; i < n; i++){
-		str[i] = sep;
-	}
-	return str;
-}
-
-void pruebas_join_10000(){
-	size_t n = 10000;
-	char *str = str_crear_10000(',', n);
-	char **strv = split(str, ',');
-	char *str_new = join(strv, '.');
-	free_strv(strv);
-	free(str);
-	free(str_new);
-}
-*/
 void pruebas_join() {
   printf("--------------------------------------------------\n");
   printf("PRUEBAS JOIN\n");
@@ -154,13 +115,6 @@ void pruebas_join() {
   free(str_4);
   free(str_5);
   free(str_6);
-
-  //free_strv(strv_1);
-  //free_strv(strv_2);
-  //free_strv(strv_3);
-  //free_strv(strv_4);
-  //free_strv(strv_5);
-
 }
 
 void pruebas_strutil() {
